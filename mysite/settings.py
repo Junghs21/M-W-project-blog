@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d!o_5dew6(o)ltej_8&@0zu0#r%*ul&&^g=oh@cwwza)(mt_&8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.2.2','.pythonanywhere.com']
 
 
 # Application definition
@@ -117,6 +117,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_CHARSET = 'utf-8'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
