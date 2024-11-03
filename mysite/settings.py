@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'blog',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# 3. CORS 설정 추가
+CORS_ALLOW_ALL_ORIGINS = True  # 모든 도메인 허용 (테스트용으로만 사용)
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -131,8 +136,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media/"
+#MEDIA_URL = "/media/"
+#MEDIA_ROOT = BASE_DIR / "media/"
+
+MEDIA_URL = MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
