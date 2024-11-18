@@ -6,6 +6,10 @@ from .forms import PostForm
 from django.shortcuts import redirect
 from rest_framework import viewsets
 from .serializers import PostSerializer
+from django.http import JsonResponse
+from django.http import JsonResponse
+from rest_framework.views import APIView
+
 
 
 
@@ -54,6 +58,20 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
 
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
+class DeletePostAPIView(APIView):
+    def delete(self, request, *args, **kwargs):
+        title = request.GET.get('title', None)  # URL에서 title 가져오기
+        if not title:
+            return JsonResponse({"error": "Title parameter is required"}, status=400)
+
+        try:
+            post = Post.objects.get(title=title)  # title로 Post 검색
+            post.delete()  # Post 삭제
+            return JsonResponse({"success": "Image deleted successfully"}, status=200)
+        except Post.DoesNotExist:
+            return JsonResponse({"error": "Image with the given title does not exist"}, status=404)
 
 
 class blogImage(viewsets.ModelViewSet):
